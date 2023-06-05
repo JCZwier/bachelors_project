@@ -5,7 +5,7 @@ import networkx as nx
 import matplotlib.pyplot as plt     # !!! replace?
 from collections import Counter
 
-n = 250			# total number of papers in the network
+n = 250				# total number of papers in the network
 c = 30				# number of papers that a paper cites on average
 a = 1				# ground state (paper initially only cites itself)
 p_pref = c / (a+c)	# probability of citing a paper based on preferential attachment (1-p is the probability of citing a random paper)
@@ -83,8 +83,6 @@ randomized_cn = nx.directed_edge_swap(cn)
 
 print(sorted(cn.in_degree))
 print(sorted(randomized_cn.in_degree))
-print(cn.edges(37))
-print(randomized_cn.edges(37))
 
 print("Amount of co-citation pairs: ", len(cc_count))
 
