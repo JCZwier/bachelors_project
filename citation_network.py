@@ -6,7 +6,7 @@ import networkx as nx
 import matplotlib.pyplot as plt     # !!! replace?
 from collections import Counter
 
-n = 250				# total number of papers in the network
+n = 10000			# total number of papers in the network
 c = 30				# number of papers that a paper cites on average
 a = 1				# ground state (paper initially only cites itself)
 p_pref = c / (a+c)	# probability of citing a paper based on preferential attachment (1-p is the probability of citing a random paper)
@@ -36,6 +36,7 @@ def computeZScores(cc_count, cc_counts_null, n_null):
 	for i in range(len(cc_count)):
 		pair = list(cc_count.keys())[i]
 		value = list(cc_count.values())[i]
+		
 		cc_counts_null_distributions.append([])
 		
 		for j in range(n_null):
@@ -44,18 +45,16 @@ def computeZScores(cc_count, cc_counts_null, n_null):
 			else:
 				cc_counts_null_distributions[i].append(0)
 				
-		if not np.any(cc_counts_null_distributions[i]):
-			z = None
-		else:
-			exp = np.mean(cc_counts_null_distributions[i])		
-			std = np.std(cc_counts_null_distributions[i])
+		exp = np.mean(cc_counts_null_distributions[i])		
+		std = np.std(cc_counts_null_distributions[i])
 		
-			z = (float(value) - exp) / std
+		if std == 0:
+			z = None
+		else:	
+			z = (value - exp) / std
 			
 		z_scores.append(z)
-		# ~ print(cc_counts_null_distributions[i])
 		
-	print(z_scores)
 	return z_scores
 	
 def createCitationNetwork(n_nodes):	# with preferential attachment
