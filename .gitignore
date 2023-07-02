@@ -1,5 +1,7 @@
 Model-venv
-citation_network.png
-citation_network_randomized.png
+*.png
 citation_network.geany
+cocitation.py
+co_citation_example.py
+notepad.py
 __pycache__
