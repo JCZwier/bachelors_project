@@ -1,6 +1,8 @@
+ipynb_checkpoints
 Model-venv
 *.png
 citation_network.geany
+citation_network.ipynb
 cocitation.py
 co_citation_example.py
 notepad.py
